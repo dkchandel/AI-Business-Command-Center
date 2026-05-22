@@ -1,11 +1,14 @@
-from fastapi.middleware.cors import CORSMiddleware
-from ai.llm import generate_business_insight
-
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 import pandas as pd
+
+from backend.db import cursor
+from ai.llm import generate_business_insight
 
 app = FastAPI()
 
+# CORS Middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -14,19 +17,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load dataset
+# Load CSV Dataset
 df = pd.read_csv("data/sales_data.csv")
 
 
-# Home route
+# Home Route
 @app.get("/")
 def home():
-    return {"message": "AI Business Dashboard API Running"}
+
+    return {
+        "message": "AI Business Dashboard API Running"
+    }
 
 
-# Total sales route
+# Total Sales Route
 @app.get("/total-sales")
 def total_sales():
+
     total = df["Sales_Amount"].sum()
 
     return {
@@ -34,17 +41,20 @@ def total_sales():
     }
 
 
-# Region wise sales
+# Region Sales Route (MySQL)
 @app.get("/region-sales")
 def region_sales():
 
-    region_data = (
-        df.groupby("Region")["Sales_Amount"]
-        .sum()
-        .to_dict()
-    )
+    query = """
+    SELECT region, sales_amount
+    FROM sales
+    """
 
-    return region_data
+    cursor.execute(query)
+
+    data = cursor.fetchall()
+
+    return data
 
 
 # AI Insight Route

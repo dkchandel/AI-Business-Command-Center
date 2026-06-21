@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/AI-Business-Command-Center/static/css/main.f347374e.css",
+    "main.js": "/AI-Business-Command-Center/static/js/main.5cd1cd2c.js",
+    "static/js/453.64aababc.chunk.js": "/AI-Business-Command-Center/static/js/453.64aababc.chunk.js",
+    "index.html": "/AI-Business-Command-Center/index.html",
+    "main.f347374e.css.map": "/AI-Business-Command-Center/static/css/main.f347374e.css.map",
+    "main.5cd1cd2c.js.map": "/AI-Business-Command-Center/static/js/main.5cd1cd2c.js.map",
+    "453.64aababc.chunk.js.map": "/AI-Business-Command-Center/static/js/453.64aababc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f347374e.css",
+    "static/js/main.5cd1cd2c.js"
+  ]
+}
